@@ -1,0 +1,209 @@
+:root {
+  --primary: #3a0709;
+  --success: #00bf8e;
+  --warning: #f7c94b;
+  --danger: #f75842;
+  --danger-variant: rgba(247, 88, 66, 0.4);
+  --white: #fff;
+  --light: rgba(255, 255, 255, 0.7);
+  --black: #000;
+  --bg: #1f2641;
+  --bg1: #2e3267;
+  --bg2: #424890;
+
+  --container-width-lg: 80%;
+  --container-width-md: 90%;
+  --container-width-sm: 94%;
+
+  --transition: all 400ms ease;
+}
+
+/* achievments */
+.about-achievments {
+  margin-top: 5rem;
+}
+.about-achievments-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 5rem;
+}
+.about-achievments-right > p {
+  margin: 1.6rem 0 2.5rem;
+}
+.achievement-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.achievement-card {
+  background: var(--bg1);
+  padding: 1.6rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: var(--transition);
+}
+.achievement-card:hover {
+  background: var(--bg2);
+  box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.2);
+}
+.achievement-icon {
+  background: var(--danger);
+  padding: 0.6rem;
+  border-radius: 1rem;
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+.achievement-card:nth-child(2) .achievement-icon {
+  background: var(--success);
+}
+.achievement-card:nth-child(3) .achievement-icon {
+  background: var(--primary);
+}
+.achievement-card p {
+  margin-top: 1rem;
+}
+/* achievements end */
+
+/* team  */
+
+.team {
+  margin-top: 7rem;
+  background: var(--bg1);
+  box-shadow: inset 0 0 3rem rgba(0, 0, 0, 0.5);
+}
+.team h2 {
+  padding: 3rem 0 0 3rem;
+  text-align: center;
+}
+.team-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+.team-member {
+  background: var(--bg2);
+  padding: 2rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.team-member:hover {
+  background: transparent;
+  border-color: var(--primary);
+}
+.team-member-image img {
+  filter: saturate(0);
+  transition: filter 0.4s;
+}
+.team-member:hover .team-member-image img {
+  filter: saturate(100%);
+}
+.team-member-info * {
+  text-align: center;
+  margin-top: 1.4rem;
+}
+.team-member-info p {
+  color: var(--light);
+}
+
+.team-member-socials {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg1);
+  border-radius: 1rem 0 0 1rem;
+  box-shadow: -2rem 0 2rem rgba(0, 0, 0, 0.3);
+  transition: right 0.4s;
+  z-index: 2;
+}
+.team-member:hover .team-member-socials,
+.team-member:focus-within .team-member-socials {
+  right: 0;
+}
+.team-member-socials a {
+  padding: 1rem;
+  color: var(--white);
+  font-size: 1.2rem;
+  transition: background 0.3s, color 0.3s;
+}
+.team-member-socials a:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* team end */
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+  .about-achievments {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .about-achievments-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .about-achievments-left {
+    width: 60%;
+    margin: 0 auto 2rem auto;
+  }
+  .about-achievments-right > h1 {
+    font-size: 2rem;
+  }
+  .achievement-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .team-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .about-achievments {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .about-achievments-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  .about-achievments-left {
+    width: 100%;
+    margin: 0 auto 1rem auto;
+  }
+  .about-achievments-right > h1 {
+    font-size: 1.3rem;
+  }
+  .about-achievments-right > p {
+    font-size: 1rem;
+  }
+  .achievement-cards {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+  .achievement-card {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  .team-container {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    padding-bottom: 6rem;
+  }
+  .team-member {
+    padding: 0.5rem;
+  }
+}
