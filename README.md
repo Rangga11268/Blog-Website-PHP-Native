@@ -65,9 +65,9 @@ Situs web ini dilengkapi dengan berbagai fitur untuk memberikan pengalaman blogg
 
 Struktur database dirancang untuk menjadi efisien dan skalabel, menghubungkan pengguna, postingan, dan kategori secara relasional.
 
-\<p align="center"\>
-\<img src="images/blog\_db.png" alt="Relasi Database Blog" width="600"\>
-\</p\>
+<p align="center">
+<img src="images/blog_db.png" alt="Relasi Database Blog" width="600">
+</p>
 
 -----
 
