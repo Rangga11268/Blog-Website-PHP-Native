@@ -64,8 +64,8 @@ $posts = mysqli_query($conn, $query);
 <!-- Featured End -->
 
 <!-- Posts  -->
-<section class="posts<?php if (mysqli_num_rows($featured_result) != 1) echo ' extra-margin'; ?>">
-  <div class="container posts-container">
+<section class="posts <?= $featured ? '' : 'section_extra-margin' ?>">
+  <div class=" container posts-container">
     <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
       <article class="post">
         <div class="post-thumbnail">

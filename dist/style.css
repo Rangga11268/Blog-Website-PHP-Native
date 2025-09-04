@@ -50,7 +50,7 @@ body {
   margin: 0 auto;
 }
 section {
-  margin-top: 7rem;
+  margin-top: 3rem;
   width: 100vw;
 }
 h1,
@@ -214,11 +214,14 @@ nav button {
 /* Featured end */
 
 /* Post  */
+.section_extra-margin {
+  margin-top: 3rem;
+}
 .posts-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5rem;
-  margin-top: 10rem;
+  margin-top: 12rem;
   margin-bottom: 5rem;
 }
 /* Post end */

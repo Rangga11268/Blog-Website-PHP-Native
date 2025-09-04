@@ -2,173 +2,70 @@
 
 include 'partials/header.php';
 
+// fetch semua post dari post table
+$query = "SELECT * FROM posts ORDER BY date_time DESC";
+$posts = mysqli_query($conn, $query);
+
+
 ?>
 
 <!-- Search bar  -->
 <section class="search-bar">
-  <form action="" class="container search-bar-container">
+  <form action="<?= ROOT_URL; ?>search.php" class="container search-bar-container" method="GET">
     <div>
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="search" name="" placeholder="search" />
+      <input type="search" name="search" placeholder="search" />
     </div>
-    <button type="submit" class="btn">Go</button>
+    <button type="submit" name="submit" class="btn">Go</button>
   </form>
 </section>
 <!-- Search bar end -->
 
 <!-- Posts  -->
 <section class="posts">
-  <div class="container posts-container">
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog2.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar3.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
+  <div class=" container posts-container">
+    <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+      <article class="post">
+        <div class="post-thumbnail">
+          <img src="./images/<?= $post['thumbnail']; ?> " />
+        </div>
+        <div class="post-info">
+          <?php
+          // fecth kategori dari database
+          $category_id = $post['category_id'];
+          $category_query = "SELECT * FROM categories WHERE id = $category_id";
+          $category_result = mysqli_query($conn, $category_query);
+          $category = mysqli_fetch_assoc($category_result);
+          ?>
+          <a href="<?= ROOT_URL ?>category-posts.php?id=<?= $post['category_id']; ?>" class="category-button">
+            <?= $category['title']; ?></a>
+          <h3 class="post-title">
+            <a href="<?= ROOT_URL ?>posts.php?id=<?= $post['id']; ?>; ?>"><?= $post['title']; ?></a>
+          </h3>
+          <p class="post-body">
+            <?= substr($post['body'], 0, 150); ?>...
+          </p>
+          <div class="post-author">
+            <?php
+            // fetch data author dari database
+            $author_id = $post['author_id'];
+            $author_query = "SELECT * FROM users WHERE id = $author_id";
+            $author_result = mysqli_query($conn, $author_query);
+            $author = mysqli_fetch_assoc($author_result);
+            ?>
+            <div class="post-author-avatar">
+              <img src="./images/<?= $author['avatar']; ?>" />
+            </div>
+            <div class="post-author-info">
+              <h5>By: <?= "{$author['firstname']} {$author['lastname']}"; ?></h5>
+              <small>
+                <?= date("M d, Y - H:i", strtotime($post['date_time'])); ?>
+              </small>
+            </div>
           </div>
         </div>
-      </div>
-    </article>
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog3.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar4.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog4.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar5.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog5.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar6.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog6.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar7.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="post">
-      <div class="post-thumbnail">
-        <img src="./images/blog7.jpg" alt="" />
-      </div>
-      <div class="post-info">
-        <a href="" class="category-button">Wild Life</a>
-        <h3 class="post-title">
-          <a href="posts.html">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Delectus, modi.</a>
-        </h3>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
-          in nostrum, consequatur, qui provident molestiae corporis magnam
-        </p>
-        <div class="post-author">
-          <div class="post-author-avatar">
-            <img src="./images/avatar8.jpg" alt="" />
-          </div>
-          <div class="post-author-info">
-            <h5>By: Lorem ipsum dolor sit amet.</h5>
-            <small>June 11 2025 - 10:30 </small>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
+    <?php endwhile ?>
   </div>
 </section>
 <!-- Posts end -->
@@ -177,12 +74,13 @@ include 'partials/header.php';
 
 <section class="category-buttons">
   <div class="container category-buttons-container">
-    <a href="" class="category-button">Art</a>
-    <a href="" class="category-button">Wild Life</a>
-    <a href="" class="category-button">Travel</a>
-    <a href="" class="category-button">Science And Tecnology</a>
-    <a href="" class="category-button">Food</a>
-    <a href="" class="category-button">Music</a>
+    <?php
+    $all_categories = "SELECT * FROM categories";
+    $all_categories_result = mysqli_query($conn, $all_categories);
+    ?>
+    <?php while ($category = mysqli_fetch_assoc($all_categories_result)) : ?>
+      <a href="<?= ROOT_URL; ?>category-posts.php?id=<?= $category['id']; ?>" class="category-button"><?= $category['title']; ?></a>
+    <?php endwhile ?>
   </div>
 </section>
 <!-- Category Button end-->
